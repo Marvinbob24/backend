@@ -114,6 +114,10 @@
 import Cart from "../models/cartSchema.js";
 import Product from "../models/productSchema.js";
 
+<<<<<<< HEAD
+=======
+// Add product to cart
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
 const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
@@ -132,12 +136,19 @@ const addToCart = async (req, res) => {
       item => String(item.productId) === String(productId)
     );
 
+<<<<<<< HEAD
     const qtyToSet = Math.min(quantity, product.stockCount); // 🔹 ensure not more than stock
 
     if (existingItem) {
       existingItem.quantity = qtyToSet; // 🔹 replace quantity
     } else {
       cart.products.push({ productId, quantity: qtyToSet });
+=======
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.products.push({ productId, quantity });
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
     }
 
     // Recalculate total
@@ -152,7 +163,11 @@ const addToCart = async (req, res) => {
 
     const populatedCart = await Cart.findById(cart._id).populate("products.productId");
 
+<<<<<<< HEAD
     res.status(200).json({ message: "Product added/updated successfully", cart: populatedCart });
+=======
+    res.status(200).json({ message: "Product added to cart successfully", cart: populatedCart });
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
   } catch (error) {
     console.error("Failed to add to cart:", error);
     res.status(500).json({ message: "Failed to add product to cart" });

@@ -1,3 +1,63 @@
+<<<<<<< HEAD
+=======
+// // import { Router } from "express";
+// // import authorizeAdmin from "../middlewares/authorizeAdmin.js";
+// // import authenticateUser from "../middlewares/authenticateUser.js";
+// // import { getProducts, createProduct } from "../controllers/productController.js";
+
+// // const router = Router();
+
+// // router.post("/create", authenticateUser, authorizeAdmin, createProduct);
+// // router.get("/get", authenticateUser, getProducts);
+
+// // export default router;
+
+// // import { Router } from "express";
+// // import { createProduct, getProducts } from "../controllers/productController.js";
+// // import authenticateUser from "../middlewares/authenticateUser.js";
+// // import authorizeAdmin from "../middlewares/authorizeAdmin.js";
+// // import upload from "../middlewares/upload.js";
+
+// // const router = Router();
+
+// // // Upload single image with field name "image"
+// // router.post("/create", authenticateUser, authorizeAdmin, upload.single("image"), createProduct);
+
+// // // Get all products (public)
+// // router.get("/get", getProducts);
+
+// // export default router;
+
+// import { Router } from "express";
+// import authenticateUser from "../middlewares/authenticateUser.js";
+// import authorizeAdmin from "../middlewares/authorizeAdmin.js";
+// import { createProduct, getProducts, deleteProduct } from "../controllers/productController.js";
+// import upload from "../middlewares/upload.js"; // multer upload
+
+// const router = Router();
+
+// // All users can view products
+// router.get("/get", getProducts);
+
+// // Only admins can create products
+// router.post(
+//   "/create",
+//   authenticateUser,
+//   authorizeAdmin,
+//   upload.single("image"), // "image" matches the field name in the form
+//   createProduct
+// );
+
+// // Only admins can delete products
+// router.delete(
+//   "/delete/:id",
+//   authenticateUser,
+//   authorizeAdmin,
+//   deleteProduct
+// );
+
+// export default router;
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
 
 
 import { Router } from "express";

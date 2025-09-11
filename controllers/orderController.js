@@ -297,6 +297,7 @@ const getAllOrders = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // ADMIN STATS (with optional date filters)
 const getAdminStats = async (req, res) => {
   try {
@@ -330,11 +331,28 @@ const getAdminStats = async (req, res) => {
     ]);
 
     res.json({ totalOrders, totalRevenue, statusCounts, revenueOverTime });
+=======
+// ADMIN STATS
+const getAdminStats = async (req, res) => {
+  try {
+    const totalOrders = await Order.countDocuments();
+    const orders = await Order.find();
+    const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
+
+    const statusCounts = await Order.aggregate([
+      { $group: { _id: "$status", count: { $sum: 1 } } },
+    ]);
+
+    res.json({ totalOrders, totalRevenue, statusCounts });
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
   } catch (error) {
     console.error("Admin stats error:", error);
     res.status(500).json({ message: "Failed to fetch admin stats" });
   }
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1d3ff7e24b59e7e4f9ffbd19ca6f0b7b76c411b0
 export { placeOrder, getUserOrders, getAllOrders, getAdminStats };
