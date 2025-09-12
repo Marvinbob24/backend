@@ -92,21 +92,28 @@ const __dirname = path.dirname(__filename);
 app.use(json());
 
 // CORS setup for local and deployed frontend
-const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://frontend2-zeta-nine.vercel.app", // deployed frontend
-];
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps, Postman, curl)
+      if (!origin) return callback(null, true);
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+      // ✅ Allow localhost during dev
+      if (origin.includes("localhost:5173")) {
+        return callback(null, true);
+      }
+
+      // ✅ Allow any frontend deployed on Vercel
+      if (origin.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+
+      // ❌ Reject other origins
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
 // Serve uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
