@@ -94,11 +94,11 @@ app.use(json());
 // CORS setup for local and deployed frontend
 const allowedOrigins = [
   "http://localhost:5173", // local dev
-  "https://frontend-tau-one-41.vercel.app" // Vercel frontend
+  "https://frontend2-zeta-nine.vercel.app", // deployed frontend
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -107,7 +107,6 @@ app.use(cors({
   },
   credentials: true,
 }));
-
 // Serve uploaded images
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
